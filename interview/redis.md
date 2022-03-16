@@ -1,4 +1,6 @@
-<img src='https://github.com/czp-first/ToBeBetter/tree/master/icons/redis.svg'>
+![icon](https://github.com/czp-first/ToBeBetter/blob/master/icons/redis.svg)
+
+
 
 # 数据类型
 
