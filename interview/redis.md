@@ -1,4 +1,4 @@
-<img src='/Users/caozhengping/Downloads/redis.svg'>
+<img src='https://github.com/czp-first/ToBeBetter/tree/master/icons/redis.svg'>
 
 # 数据类型
 
