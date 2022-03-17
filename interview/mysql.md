@@ -1,3 +1,5 @@
+<div align='center'><img src='https://github.com/czp-first/ToBeBetter/blob/master/icons/mysql.svg'></div>
+
 # 索引
 
 ## 索引类型
