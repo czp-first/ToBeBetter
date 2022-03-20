@@ -102,4 +102,5 @@
 # 参考资料
 
 - [社招后端21连问（三年工作经验一面)](https://mp.weixin.qq.com/s/zYaleLjjpp8wfHs23eVuKg)
+- [MySQL面试经典100题（收藏版，附答案）](https://www.cnblogs.com/setalone/p/14851000.html)
 
