@@ -1,5 +1,13 @@
 <div align='center'><img src='https://github.com/czp-first/ToBeBetter/blob/master/icons/mysql.svg'></div>
 
+
+
+# 0 总体架构
+
+<div align='center'><img src='https://img-blog.csdnimg.cn/20210402013609534.png#pic_center'></div>
+
+<div align='right'><span>-- 摘自</span><a href='https://blog.csdn.net/huangzhilin2015/article/details/115396599'>MySQL--buffer pool、redo log、undo log、binlog</a></div>
+
 # 1 索引
 
 索引是一种数据结构，用于帮助我们在**大量**数据中快速定位到目标数据。注意大量，数据量大了索引才显得有意义。
@@ -214,13 +222,13 @@ Extra列有Using index condition，但是并不代表一定使用了索引下推
 
 ## 3.2 原子性
 
-undo log(回滚日志)
+<a href='#undo'>undo日志</a>(回滚日志)
 
 
 
 ## 3.3 持久性
 
-redo log(重做日志)
+<a href='#redo'>redo log</a>(重做日志)
 
 
 
@@ -254,22 +262,22 @@ redo log(重做日志)
 
 ### 3.4.3 四大隔离级别
 
-|            隔离级别            |  脏读  | 不可重复读 |  幻读  |
-| :----------------------------: | :----: | :--------: | :----: |
-| Read Uncommitted<br />读未提交 |  可能  |    可能    |  可能  |
-|  Read Committed<br />读已提交  | 不可能 |    可能    |  可能  |
-| Repeatable Read<br />可重复读  | 不可能 |   不可能   |  可能  |
-|    Serializble<br />串行化     | 不可能 |   不可能   | 不可能 |
+|            隔离级别            |  脏读  | 不可重复读 |  幻读  | 一致性读实现             |
+| :----------------------------: | :----: | :--------: | :----: | ------------------------ |
+| Read Uncommitted<br />读未提交 |  可能  |    可能    |  可能  | 直接读取版本的最新记录   |
+|  Read Committed<br />读已提交  | 不可能 |    可能    |  可能  | 使用版本链实现(ReadView) |
+| Repeatable Read<br />可重复读  | 不可能 |   不可能   |  可能  | 使用版本链实现(ReadView) |
+|    Serializble<br />串行化     | 不可能 |   不可能   | 不可能 | 通过加锁访问数据的实现   |
 
 大多数数据库系统中，默认的隔离级别是读已提交(如Oracle)或可重复读。
 
-InnoDB默认的隔离级别是RR。<font color='red'>需要注意的是，在SQL标准中，RR是无法避免幻读问题的，但是InnoDB实现的RR避免了幻读问题。</font>
+InnoDB默认的隔离级别是RR。<font color='red'>需要注意的是，在SQL标准中，RR是无法避免幻读问题的，但是InnoDB实现的RR避免了幻读问题。</font>RR实现的核心机制，是基于MVCC机制来实现的。
 
 
 
 ### 3.5 MVCC
 
-Muti-Version Concurrency Control，即多版本的并发控制协议。
+Muti-Version Concurrency Control，即多版本的并发控制协议。实现是通过保存数据在某一个时间点的快照，因此每一个事务无论执行多长时间，看到的数据，都是一样的。
 
 它的实现依赖于 隐式字段、undo日志、快照读&当前读、Read View。
 
@@ -278,12 +286,12 @@ Muti-Version Concurrency Control，即多版本的并发控制协议。
 对于InnoDB，每一行记录都会有两个隐藏列 DB_TRX_ID、DB_ROLL_PTR，如果表中没有主键和非NULL唯一键时，则还会有第三个隐藏的主键列 DB_ROW_ID。
 
 - DB_TRX_ID：记录每一行最近一次修改(修改/更新)它的事务ID。
-- DB_ROLL_PTR：这个隐藏列就相当于一个指针，指向回滚段的undo日志。
+- DB_ROLL_PTR：这个隐藏列就相当于一个指针，指向回滚段的undo日志，通过指针找到之前版本，通过链表形式组织。
 - DB_ROW_ID：单调递增的行ID。
 
 
 
-undo日志
+<a href='#undo'>undo日志</a>
 
 
 
@@ -305,6 +313,8 @@ undo日志
 - ReadView就是事务执行快照读时，产生的读视图。
 - 事务执行快照读时，会产生数据库系统当前的一个快照(trx_sys)，记录当前系统中还有哪些活跃的读写事务，把他们放到一个列表里。
 - ReadView主要是用来做可见性判断的，即判断当前事务可见哪个版本的数据。
+
+<font color='red'>ReadView是与SQL绑定的，并不是事务，每次SQL启动时构造ReadView的up_limit_id和low_limit_id页都是不一样的。</font>
 
 
 
@@ -345,7 +355,31 @@ undo日志
 
 # 4 日志
 
-## 4.1 undo日志
+由于磁盘随机读写的效率很低，MySQL为了提高性能，读写不是直接操作的磁盘文件，而是在内存中开辟了一个叫做buffer pool的缓存区域，更新数据的时候会优先更新到buffer pool，之后再由I/O线程写入磁盘。同时InnoDB为了保证当即不丢失buffer pool中的数据，实现crash safe，还引入了一个叫做redo log的日志模块。另外还有处于MySQL Server层的用于备份磁盘数据的bin log，用于事务回滚和MVCC的undo log等。
+
+## 4.1 buffer pool
+
+buffer pool作为了一个缓冲池，以页为单位，用于缓存数据和索引等数据，对应表空间中的页。回到MySQL组件图，一条SQL经过服务层各个组件的处理之后，最终通过执行器调用存储引擎提供的接口执行。如果是要更新一条数据，那么会先找到数据所在页，将该页加载到buffer pool中，在buffer pool中对数据进行修改，最终会通过IO线程再以页为单位将缓存中的数据刷入磁盘。
+
+
+
+## 4.2 <span id='redo'>redo log</span>
+
+由于引入了buffer pool，数据不是实时写入磁盘的，如果数据还没有写入磁盘的时候MySQL宕机了，那么缓存中的数据不就丢失了吗？使用redo log来记录这些操作，即使MySQL宕机，那么在重新启动后也能根据这些记录来回复还没来得及写入磁盘的数据，进而保证了事务的持久性。redo log是物理日志，记录了某个数据页上做了什么修改，属于InnoDB引擎，MyISAM等不具备。
+
+记录会先在buffer pool中更新，当pool中更新之后会在redo log buffer中添加对应的记录，记录某个数据页上做了什么修改，事务会被设置为prepare状态，这个时候就可以开始根据策略刷盘了，然后等待Server层处理(比如binlog写入)，在事务提交之后，标识redo log为已提交。
+
+redo log buffer中的数据也不是直接入盘，中间还会经过操作系统内核空间的缓冲区(os buffer)，然后才到磁盘上的redo log file。`innodb_flush_log_at_trx_commit`参数可以控制redo log buffer何时写入redo log file，该参数有三个可选值
+
+- 0：延迟写。不会在事务提交时立即将redo log buffer写入到os buffer，而是每秒写入os buffer，然后立即写入到redo log file，也就是每秒刷盘。
+- 1：实时写，实时刷：每次事务提交都会将redo log buffer写入os buffer，然后立即写入redo log file。数据能够及时入盘，但是每次事务提交都会刷盘，效率较低。
+- 2：实时写，实时刷。每次事务提交豆浆redo log buffer写入os buffer，然后每秒将os buffer写入到redo log file。
+
+buffer pool中的数据需要刷盘，redo log buffer中的数据页也需要刷盘。如果事务提交成功之后buffer pool中的数据还没有刷盘，这是MySQL宕机了，那么在重启时通过比对redo log file和数据页，可以从redo log file中恢复数据，redo log file根据innodb_flush_log_at_trx_commit参数配置，通常最多丢失一秒的数据。
+
+
+
+## 4.3 <span id='undo'>undo log</span>
 
 - 事务未提交的时候，修改数据的镜像(修改前的数据)，存到undo日志里。一遍事务回滚时，恢复旧版本数据，撤销未提交事务数据对数据库的影响。
 - undo日志是逻辑日志。可以这样认为，当delete一条记录时，undo log中会记录一条对应的insert记录，当update一条记录时，它记录一条对应相反的update记录。
@@ -353,9 +387,23 @@ undo日志
 
 多个事务并行操作某一行数据时，不同事务对该行数据的修改会产生多个版本，然后通过回滚指针(DB_ROLL_PTR)连成一条Undo日志链。
 
+操作过程如下：
+
+1. 将待操作的行加排他锁。
+2. 将该行远门的值拷贝到undo log中，db_trx_id和db_roll_ptr保持不变(形成历史版本)。
+3. 修改该行的值，更新该行的db_trx_id为当前操作事务的事务id，将db_roll_ptr指向第二步拷贝到undo log链中的旧版本记录。(通过db_roll_ptr可以找到历史记录)
+4. 记录redo log，包括undo log中的修改。
 
 
-## 4.2 redo日志
+
+在InnoDB里，undo log分为两种类型
+
+- insert undo log：插入产生的undo log。不需要维护历史版本链，因为没有历史数据，所以其产生的undo log可以在事务提交之后删除，不需要purge操作。
+- undate undo log：更新或删除产生的undo log。不会在提交后就立即删除，而是会放入undo log历史版本链，用于MVCC，最后由purge线程清理。
+
+
+
+## 
 
 
 
@@ -386,3 +434,4 @@ undo日志
 - [再有人问你为什么MySQL用B+树做索引，就把这篇文章发给她](https://mp.weixin.qq.com/s?__biz=Mzg3NzU5NTIwNg==&mid=2247487988&idx=1&sn=eccbb31faa4f580ae71fbea5cd4ff01b&source=41#wechat_redirect)
 - [一文彻底读懂MySQL事务的四大隔离级别](https://juejin.cn/post/6844904115353436174#heading-8)
 - [什么是MySQL MVCC的ReadView？](https://www.modb.pro/db/75331)
+- [MySQL--buffer pool、redo log、undo log、binlog](https://blog.csdn.net/huangzhilin2015/article/details/115396599)
