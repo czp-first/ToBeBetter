@@ -156,7 +156,7 @@ typedef struct dict {
 
 
 
-hashtale源码
+hashtable源码
 
 ```c++
 struct dictEntry { 
@@ -295,7 +295,7 @@ typedef struct quicklist {
 
 ### 优点
 
-对cpu友好，reis只会在使用该键时才会进行过期检查，对于很多用不到的key不用浪费时间进行过期检查
+对cpu友好，reis只会在使用该键时才会进行过期检查，对于很多用不到的key不用浪费时间进行过期检查。
 
 ### 缺点
 
@@ -335,7 +335,7 @@ typedef struct quicklist {
 
 ### 载入RDB文件
 
-- 如果服务器已主服务器模式运行，那么在载入RDB文件时，过期的键会被过滤掉，不会被载入到redis中。
+- 如果服务器以主服务器模式运行，那么在载入RDB文件时，过期的键会被过滤掉，不会被载入到redis中。
 - 如果服务器以从服务器模式运行，那么无论键是否过期都会被载入到数据库中。但因为主从服务器在进行数据同步时，从服务器就会被清空，所以一般来说过期键对从服务器也不对造成影响。
 
 ### AOF文件写入
@@ -354,7 +354,7 @@ typedef struct quicklist {
 
 ## 设置redis最大内存
 
-在配置文件redis.conf中，可以通过参数 maxmemory \<bytes\> 来设定最大内存，不设定该参数默认是无限制的
+在配置文件redis.conf中，可以通过参数 maxmemory \<bytes\> 来设定最大内存，不设定该参数默认是无限制的。
 
 ## 设置内存淘汰方式
 
@@ -399,7 +399,7 @@ RDB是一种快照存储持久化方式，具体就是将redis某一时刻的内
 
 #### save命令
 
-当客户端向服务器发送save命令请求持久化时，服务器会阻塞save命令之后的其他客户端亲故，直到数据同步完成。如果数据量太大，同步数据会执行很久，而这期间redis服务器无法接收其他请求，所以醉话不要在生产环境使用save命令
+当客户端向服务器发送save命令请求持久化时，服务器会阻塞save命令之后的其他客户端请求，直到数据同步完成。如果数据量太大，同步数据会执行很久，而这期间redis服务器无法接收其他请求，所以最好不要在生产环境使用save命令。
 
 #### bgsave命令
 
@@ -455,7 +455,7 @@ redis服务器不负责写入aof，而是交由操作系统来处理什么时候
 
 AOF将客户端的每一个写操作都追加到aof命令末尾，可能会造成aof文件变得非常大。aof文件太大，加载aof文件恢复数据时，就会非常慢，为了解决这个问题，reids支持aof文件重写，通过重写aof，可以生成一个恢复当前数据的最少命令集。
 
-#### 
+
 
 ### 两种重写方式
 
@@ -494,12 +494,12 @@ AOF只是追加日志文件，因此对服务器性能影响较小，速度比RD
 
 # 参考资料
 
-[10 分钟彻底理解 Redis 的持久化和主从复制](https://mp.weixin.qq.com/s/ZGamPtfIZaMwUk1DU3iDnQ)
+- [10 分钟彻底理解 Redis 的持久化和主从复制](https://mp.weixin.qq.com/s/ZGamPtfIZaMwUk1DU3iDnQ)
 
-[Redis 几种数据类型及应用场景](https://juejin.cn/post/6844903951502934030)
+- [Redis 几种数据类型及应用场景](https://juejin.cn/post/6844903951502934030)
 
-[Redis五种数据类型及应用场景](https://blog.51cto.com/u_14612575/2740299)
+- [Redis五种数据类型及应用场景](https://blog.51cto.com/u_14612575/2740299)
 
-[Redis详解（十一）------ 过期删除策略和内存淘汰策略 ](https://www.cnblogs.com/ysocean/p/12422635.html)
+- [Redis详解（十一）------ 过期删除策略和内存淘汰策略 ](https://www.cnblogs.com/ysocean/p/12422635.html)
 
-[聊聊 Redis 的过期键删除策略](https://segmentfault.com/a/1190000040130962)
+- [聊聊 Redis 的过期键删除策略](https://segmentfault.com/a/1190000040130962)

@@ -75,7 +75,7 @@
 
 InnoDB的聚簇索引的叶子节点存储的是行记录（其实是页结构，一个页包含多行数据），InnoDB必须至少要有一个聚簇索引。由此可见，使用聚簇索引查询会很快，因为可以直接定位到行记录。
 
-如果查询条件位主键（聚簇索引），则只需扫描一个B+树即可通过聚簇索引定位到要查找的行记录数据。
+如果查询条件为主键（聚簇索引），则只需扫描一个B+树即可通过聚簇索引定位到要查找的行记录数据。
 
 ### 1.1.2 普通索引
 
@@ -474,7 +474,7 @@ buffer pool中的数据需要刷盘，redo log buffer中的数据页也需要刷
 
 [后端程序员必备：书写高质量SQL的30条建议](https://juejin.cn/post/6844904098999828488)
 
-
+explain执行计划
 
 # 6 锁
 
@@ -498,3 +498,4 @@ select for update 除了有查询的作用外，还会加锁，而且是悲观�
 - [MySQL--buffer pool、redo log、undo log、binlog](https://blog.csdn.net/huangzhilin2015/article/details/115396599)
 - [InnoDB的数据页到底长什么样？](https://www.modb.pro/db/128983)
 - [深入理解为什么MySQL全表扫描很慢？](https://www.modb.pro/db/137302)
+- [面试官：不会看 Explain执行计划，简历敢写 SQL 优化？](https://mp.weixin.qq.com/s?__biz=Mzg3NzU5NTIwNg==&mid=2247487999&idx=1&sn=cad8d90d3c9d6bdc00ab4db9eef06bd4&source=41#wechat_redirect)
