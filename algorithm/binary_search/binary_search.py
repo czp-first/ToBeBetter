@@ -1,6 +1,6 @@
 # -*- coding: UTF-8 -*-
 """
-@Summary : 二分查找, leecode: 704
+@Summary : 二分查找, leetcode: 704
 @Author  : Rey
 @Time    : 2022-03-19 22:06:36
 """
