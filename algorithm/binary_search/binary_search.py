@@ -26,7 +26,4 @@ def binary_search(wait_list, target) -> int:
         else:
             right = cur - 1
     
-    if wait_list[left] == target:
-        return left
-    
     return -1
