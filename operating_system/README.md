@@ -2,4 +2,4 @@
 
 
 ## Catalogue
-- [process and thread](https://github.com/czp-first/ToBeBetter/tree/master/operating_system/ProcessAndThread])
+- [process and thread](https://github.com/czp-first/ToBeBetter/tree/master/operating_system/ProcessAndThread)
