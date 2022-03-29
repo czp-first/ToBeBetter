@@ -29,6 +29,10 @@ brew install cowsay
 
 - postico
 
+## redis
+
+- [AnotherRedisDesktopManager](https://github.com/qishibo/AnotherRedisDesktopManager)
+
 
 
 # iterm 2
