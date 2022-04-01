@@ -355,12 +355,10 @@ Muti-Version Concurrency Control，即多版本的并发控制协议。实现是
 #### 3.5.3.1 ReadView组成
 
 > up_limit_id：
-> The read should see all trx ids which are strictly smaller (<) than this value.
-> In other words, this is the low water mark".
+> The read should see all trx ids which are strictly smaller (<) than this value.In other words, this is the low water mark".
 >
 > low_limit_id：
-> The read should not see any transaction with trx id >= this value.
-> In other words, this is the "high water mark".
+> The read should not see any transaction with trx id >= this value.In other words, this is the "high water mark".
 >
 > m_ids：
 > Set of RW transactions that was active when this snapshot was taken.
@@ -415,7 +413,7 @@ buffer pool中的数据需要刷盘，redo log buffer中的数据页也需要刷
 
 ## 4.3 <span id='undo'>undo log</span>
 
-- 事务未提交的时候，修改数据的镜像(修改前的数据)，存到undo日志里。一遍事务回滚时，恢复旧版本数据，撤销未提交事务数据对数据库的影响。
+- 事务未提交的时候，修改数据的镜像(修改前的数据)，存到undo日志里。一旦事务回滚时，恢复旧版本数据，撤销未提交事务数据对数据库的影响。
 - undo日志是逻辑日志。可以这样认为，当delete一条记录时，undo log中会记录一条对应的insert记录，当update一条记录时，它记录一条对应相反的update记录。
 - 存储undo日志的地方，就是回滚段。
 
@@ -424,7 +422,7 @@ buffer pool中的数据需要刷盘，redo log buffer中的数据页也需要刷
 操作过程如下：
 
 1. 将待操作的行加排他锁。
-2. 将该行远门的值拷贝到undo log中，db_trx_id和db_roll_ptr保持不变(形成历史版本)。
+2. 将该行原本的值拷贝到undo log中，db_trx_id和db_roll_ptr保持不变(形成历史版本)。
 3. 修改该行的值，更新该行的db_trx_id为当前操作事务的事务id，将db_roll_ptr指向第二步拷贝到undo log链中的旧版本记录。(通过db_roll_ptr可以找到历史记录)
 4. 记录redo log，包括undo log中的修改。
 
