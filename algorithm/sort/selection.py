@@ -1,13 +1,9 @@
 # -*- coding: UTF-8 -*-
 """
-@Summary : 
+@Summary : 选择排序
 @Author  : Rey
 @Time    : 2021-01-13 08:51
-@Log     :
-           author datetime(DESC) summary
-           Rey  2021-01-13 08:51  init
 """
-from __future__ import absolute_import
 
 
 def selection_sort(origin):
