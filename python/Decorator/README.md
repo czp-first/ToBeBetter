@@ -12,7 +12,7 @@ def decorator(func):
 def add(a, b):
     ...
 
-add(1, 2) 
+add(1, 2)
 """
 等价于
 add = decorator(add)
@@ -33,3 +33,4 @@ add(1, 2)
 
 ## Helpful
 - [零基础学 Python（30）：装饰器的六种写法](https://iswbm.com/286.html)
+- [PythonDecoratorLibrary](https://wiki.python.org/moin/PythonDecoratorLibrary)
