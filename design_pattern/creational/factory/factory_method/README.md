@@ -1,0 +1,1 @@
+# 工厂方法(factory method)
