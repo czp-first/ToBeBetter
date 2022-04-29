@@ -8,7 +8,7 @@
     </tr>
     <tr>
         <td rowspan="4">
-            <a href='https://github.com/czp-first/ToBeBetter/tree/master/design_pattern'>Creational</a>
+            <a href='https://github.com/czp-first/ToBeBetter/tree/master/design_pattern/creational'>Creational</a>
         </td>
         <td>
             <a href='https://github.com/czp-first/ToBeBetter/tree/master/design_pattern/creational/factory/factory_method'>factory_method</a>
@@ -27,7 +27,6 @@
         </td>
         <td>builder</td>
     </tr>
-  	
 </table>
 
 # Helpful
