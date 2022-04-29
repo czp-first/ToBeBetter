@@ -1,6 +1,6 @@
 # -*- coding: UTF-8 -*-
 """
-@Summary : docstr
+@Summary : abstract method example1
 @Author  : Rey
 @Time    : 2022-04-28 10:25:21
 """
@@ -85,7 +85,7 @@ def validate_age(name):
     try:
         age = input(f'Welcome {name}. How old are you?')
         age = int(age)
-    except ValueError as err:
+    except ValueError:
         print(f'Age {age} is invalid, please try again...')
         return (False, age)
     return (True, age)
