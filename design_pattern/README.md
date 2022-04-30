@@ -29,7 +29,7 @@
     </tr>
     <tr>
         <td>
-            <a href='https://github.com/czp-first/ToBeBetter/tree/master/design_pattern/creational/prototype'>builder</a>
+            <a href='https://github.com/czp-first/ToBeBetter/tree/master/design_pattern/creational/prototype'>prototype</a>
         </td>
         <td>prototype</td>
     </tr>
