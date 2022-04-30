@@ -27,6 +27,12 @@
         </td>
         <td>builder</td>
     </tr>
+    <tr>
+        <td>
+            <a href='https://github.com/czp-first/ToBeBetter/tree/master/design_pattern/creational/prototype'>builder</a>
+        </td>
+        <td>prototype</td>
+    </tr>
 </table>
 
 # Helpful
