@@ -1,0 +1,1 @@
+# 享元(flyweight)

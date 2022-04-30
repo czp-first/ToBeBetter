@@ -33,6 +33,45 @@
         </td>
         <td>prototype</td>
     </tr>
+    <tr>
+        <td rowspan="6">
+            <a href='https://github.com/czp-first/ToBeBetter/tree/master/design_pattern/structural'>Structural</a>
+        </td>
+        <td>
+            <a href='https://github.com/czp-first/ToBeBetter/tree/master/design_pattern/structural/adapter'>adapter</a>
+        </td>
+        <td>adapter</td>
+    </tr>
+    <tr>
+        <td>
+            <a href='https://github.com/czp-first/ToBeBetter/tree/master/design_pattern/structural/decorator'>decorator</a>
+        </td>
+        <td>decorator</td>
+    </tr>
+  	<tr>
+        <td>
+            <a href='https://github.com/czp-first/ToBeBetter/tree/master/design_pattern/structural/facade'>facade</a>
+        </td>
+        <td>facade</td>
+    </tr>
+    <tr>
+        <td>
+            <a href='https://github.com/czp-first/ToBeBetter/tree/master/design_pattern/structural/flyweight'>flyweight</a>
+        </td>
+        <td>flyweight</td>
+    </tr>
+    <tr>
+        <td>
+            <a href='https://github.com/czp-first/ToBeBetter/tree/master/design_pattern/structural/mvc'>mvc</a>
+        </td>
+        <td>mvc</td>
+    </tr>
+    <tr>
+        <td>
+            <a href='https://github.com/czp-first/ToBeBetter/tree/master/design_pattern/structural/proxy'>proxy</a>
+        </td>
+        <td>proxy</td>
+    </tr>
 </table>
 
 # Helpful
