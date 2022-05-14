@@ -22,3 +22,6 @@ git remote -v
 
 git remote add czp git@github.com:czp-first/ToBeBetter.git
 ```
+
+# github
+pull request revert
