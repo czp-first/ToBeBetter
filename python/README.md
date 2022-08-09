@@ -27,3 +27,4 @@ Namespaces are one honking great idea -- let's do more of those!
 ## Catalogue
 - [process and thread](https://github.com/czp-first/ToBeBetter/tree/master/python/ProcessAndThread)
 - [decorator](https://github.com/czp-first/ToBeBetter/tree/master/python/Decorator)
+- 海象运算符
