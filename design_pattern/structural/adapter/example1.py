@@ -4,9 +4,6 @@
 @Author  : Rey
 @Time    : 2022-04-30 15:07:29
 """
-from re import A
-from unicodedata import name
-
 
 class Synthesizer:
     def __init__(self, name) -> None:

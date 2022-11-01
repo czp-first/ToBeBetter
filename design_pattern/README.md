@@ -67,13 +67,19 @@
         <td>prototype</td>
     </tr>
     <tr>
-        <td rowspan="6">
+        <td rowspan="7">
             <a href='https://github.com/czp-first/ToBeBetter/tree/master/design_pattern/structural'>Structural</a>
         </td>
         <td>
             <a href='https://github.com/czp-first/ToBeBetter/tree/master/design_pattern/structural/adapter'>adapter</a>
         </td>
         <td>adapter</td>
+    </tr>
+    <tr>
+        <td>
+            <a href='https://github.com/czp-first/ToBeBetter/tree/master/design_pattern/structural/composite'>decorator</a>
+        </td>
+        <td>composite</td>
     </tr>
     <tr>
         <td>
@@ -128,9 +134,9 @@
     </tr>
     <tr>
         <td>
-            <a href='https://github.com/czp-first/ToBeBetter/tree/master/design_pattern/structural/flyweight'>flyweight</a>
+            <a href='https://github.com/czp-first/ToBeBetter/tree/master/design_pattern/behavioral/memento'>memento</a>
         </td>
-        <td>flyweight</td>
+        <td>memento</td>
     </tr>
     <tr>
         <td>
