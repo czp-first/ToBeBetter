@@ -40,7 +40,7 @@
         <td>Desc</td>
     </tr>
     <tr>
-        <td rowspan="4">
+        <td rowspan="5">
             <a href='https://github.com/czp-first/ToBeBetter/tree/master/design_pattern/creational'>Creational</a>
         </td>
         <td>
@@ -65,6 +65,12 @@
             <a href='https://github.com/czp-first/ToBeBetter/tree/master/design_pattern/creational/prototype'>prototype</a>
         </td>
         <td>prototype</td>
+    </tr>
+    <tr>
+        <td>
+            <a href='https://github.com/czp-first/ToBeBetter/tree/master/design_pattern/creational/singleton'>singleton</a>
+        </td>
+        <td>singleton</td>
     </tr>
     <tr>
         <td rowspan="7">
@@ -112,7 +118,7 @@
         <td>proxy</td>
     </tr>
     <tr>
-        <td rowspan="8">
+        <td rowspan="9">
             <a href='https://github.com/czp-first/ToBeBetter/tree/master/design_pattern/behavioral'>Behavioral</a>
         </td>
         <td>
@@ -131,6 +137,12 @@
             <a href='https://github.com/czp-first/ToBeBetter/tree/master/design_pattern/behavioral/interpreter'>interpreter</a>
         </td>
         <td>intergreter</td>
+    </tr>
+  	<tr>
+        <td>
+            <a href='https://github.com/czp-first/ToBeBetter/tree/master/design_pattern/behavioral/iterator'>iterator</a>
+        </td>
+        <td>iterator</td>
     </tr>
     <tr>
         <td>
