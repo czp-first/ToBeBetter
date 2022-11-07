@@ -73,7 +73,7 @@
         <td>singleton</td>
     </tr>
     <tr>
-        <td rowspan="7">
+        <td rowspan="8">
             <a href='https://github.com/czp-first/ToBeBetter/tree/master/design_pattern/structural'>Structural</a>
         </td>
         <td>
@@ -83,7 +83,13 @@
     </tr>
     <tr>
         <td>
-            <a href='https://github.com/czp-first/ToBeBetter/tree/master/design_pattern/structural/composite'>decorator</a>
+            <a href='https://github.com/czp-first/ToBeBetter/tree/master/design_pattern/structural/bridge'>bridge</a>
+        </td>
+        <td>bridge</td>
+    </tr>
+    <tr>
+        <td>
+            <a href='https://github.com/czp-first/ToBeBetter/tree/master/design_pattern/structural/composite'>composite</a>
         </td>
         <td>composite</td>
     </tr>
