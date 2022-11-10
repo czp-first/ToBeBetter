@@ -29,6 +29,7 @@
 
 如果两个类不必彼此直接通信，那么这两个类就不应当发生直接的相互作用。如果一个类需要调用另一个类的某一个方法的话，可以通过第三者转发这个调用
 
+### 合成聚合复用
 
 
 ## 设计模式
@@ -150,6 +151,12 @@
         </td>
         <td>iterator</td>
     </tr>
+  	<tr>
+        <td>
+            <a href='https://github.com/czp-first/ToBeBetter/tree/master/design_pattern/behavioral/mediator'>mediator</a>
+        </td>
+        <td>mediator</td>
+    </tr>
     <tr>
         <td>
             <a href='https://github.com/czp-first/ToBeBetter/tree/master/design_pattern/behavioral/memento'>memento</a>
@@ -179,6 +186,12 @@
             <a href='https://github.com/czp-first/ToBeBetter/tree/master/design_pattern/behavioral/template'>template</a>
         </td>
         <td>template</td>
+    </tr>
+    <tr>
+        <td>
+            <a href='https://github.com/czp-first/ToBeBetter/tree/master/design_pattern/behavioral/visitor'>visitor</a>
+        </td>
+        <td>visitor</td>
     </tr>
 </table>
 
