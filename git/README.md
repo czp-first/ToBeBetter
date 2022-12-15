@@ -25,3 +25,5 @@ git remote add czp git@github.com:czp-first/ToBeBetter.git
 
 # github
 pull request revert
+
+[timeout](https://gist.github.com/Tamal/1cc77f88ef3e900aeae65f0e5e504794)
