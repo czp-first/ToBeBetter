@@ -1,0 +1,25 @@
+version: '3.3'
+services:
+  # postgres:
+  #   image: postgres:latest
+  #   container_name: postgres
+  #   environment:
+  #       POSTGRES_PASSWORD: 'Pass2023!'
+  #       POSTGRES_USER: 'postgres'
+  #       POSTGRES_HOST_AUTH_METHOD: 'trust'
+  #   volumes:
+  #     - "postgresql-data:/var/lib/postgresql/data"
+  #   ports:
+  #     - "5432:5432"
+
+  api-example:
+    env_file: "./envs/example.env"
+    build:
+      context: .
+    container_name: api-exmaple
+    ports:
+      - "8000:80"
+
+
+# volumes:
+#   postgresql-data:

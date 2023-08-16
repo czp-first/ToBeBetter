@@ -25,7 +25,8 @@ If the implementation is easy to explain, it may be a good idea.
 Namespaces are one honking great idea -- let's do more of those!
 ```
 ## Catalogue
-- [process and thread](https://github.com/czp-first/ToBeBetter/tree/master/python/ProcessAndThread)
 - [decorator](https://github.com/czp-first/ToBeBetter/tree/master/python/Decorator)
+- [fastapi](https://github.com/czp-first/ToBeBetter/tree/master/python/FastAPI)
 - 海象运算符
+- [process and thread](https://github.com/czp-first/ToBeBetter/tree/master/python/ProcessAndThread)
 - [virtualenvwrapper](https://github.com/czp-first/ToBeBetter/tree/master/python/VirtualenvWrapper)
